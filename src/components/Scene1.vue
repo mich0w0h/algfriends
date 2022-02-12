@@ -4,8 +4,8 @@ import Player from "../modules/player";
 
 // create pixi view
 const app: Application = new Application({
-  width: screen.availWidth,
-  height: screen.availHeight,
+  width: document.body.clientWidth,
+  height: document.documentElement.clientHeight,
   antialias: true,
   autoDensity: true,
   resolution: devicePixelRatio,
