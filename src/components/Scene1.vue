@@ -27,11 +27,13 @@ app.stage.interactive = true;
 app.stage.hitArea = app.renderer.screen;
 
 // click to moveforward player
-app.stage.addListener("click", (e) => {
+app.stage.addListener("click", () => {
   player.moveForward();
 });
 </script>
 
-<template></template>
+<template>
+  <div />
+</template>
 
 <style scoped></style>

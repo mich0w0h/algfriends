@@ -1,15 +1,17 @@
 env:
   browser: true
   es2021: true
+parser: vue-eslint-parser
+parserOptions:
+  parser: "@typescript-eslint/parser"
+  # project: ./tsconfig.json
+  source: module
+plugins:
+  - "@typescript-eslint"
 extends:
   - eslint:recommended
-  - plugin:vue/essential
+  - plugin:vue/vue3-recommended
+  - plugin:vue/vue3-essential
+  - plugin:vue/vue3-strongly-recommended
+  - plugin:@typescript-eslint/eslint-recommended
   - plugin:@typescript-eslint/recommended
-parserOptions:
-  ecmaVersion: latest
-  parser: '@typescript-eslint/parser'
-  sourceType: module
-plugins:
-  - vue
-  - '@typescript-eslint'
-rules: {}
