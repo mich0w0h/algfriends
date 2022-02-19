@@ -1,4 +1,4 @@
-import * as PIXI from "pixi.js";
+import * as PIXI from "pixi.js"; // import all for gsap register
 import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/PixiPlugin.js";
 gsap.registerPlugin(PixiPlugin);
@@ -9,31 +9,24 @@ PixiPlugin.registerPIXI(PIXI);
 export default class Player {
   public sprite: PIXI.Sprite;
 
+  private readonly image = "/src/assets/images/animal_dog_back.png";
   private readonly stepToGoal: number = 15;
   private readonly goalScale: number = 0.2;
 
-  private goalY: number;
+  private startPos: PIXI.ObservablePoint;
+  private goalPos: PIXI.ObservablePoint;
   private stepNum: number;
 
-  private playerStartPos: PIXI.ObservablePoint;
-
-  constructor(texturePath: string, screenWidth: number, screenHeight: number) {
+  constructor(startPos: PIXI.ObservablePoint, goalPos: PIXI.ObservablePoint) {
     // set props
-    this.goalY = screenHeight * 0.25;
     this.stepNum = 0;
-    this.playerStartPos = new PIXI.ObservablePoint(
-      () => {
-        return;
-      },
-      null,
-      screenWidth * 0.5,
-      screenHeight * 0.7
-    );
+    this.startPos = startPos;
+    this.goalPos = goalPos;
 
     // init sprite
-    this.sprite = PIXI.Sprite.from(texturePath);
+    this.sprite = PIXI.Sprite.from(this.image);
     this.sprite.anchor.set(0.5);
-    this.sprite.position.set(this.playerStartPos.x, this.playerStartPos.y);
+    this.sprite.position.set(startPos.x, startPos.y);
   }
 
   moveForward() {
@@ -48,7 +41,7 @@ export default class Player {
         scale: this.sprite.scale.x - (1 - this.goalScale) / this.stepToGoal,
         positionY:
           this.sprite.position.y +
-          (this.goalY - this.playerStartPos.y) / this.stepToGoal,
+          (this.goalPos.y - this.startPos.y) / this.stepToGoal,
       },
     });
   }
