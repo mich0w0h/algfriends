@@ -29,12 +29,20 @@ const goalPos: ObservablePoint = new ObservablePoint(
   },
   null,
   startPos.x,
-  app.screen.height * 0.25
+  app.screen.height * 0.2
 );
 
 // set background
-// const roadBottomWidth = 10;
-// let roadFill: Graphics = new Graphics();
+const roadBottomWidth = 500;
+const roadFill: Graphics = new Graphics();
+roadFill
+  .beginFill(0xffffff, 1)
+  // .lineStyle(0, 0xffffff, 1)
+  .moveTo(startPos.x + roadBottomWidth, startPos.y + 500)
+  .lineTo(goalPos.x, goalPos.y - 50)
+  .lineTo(startPos.x - roadBottomWidth, startPos.y + 500)
+  .endFill();
+app.stage.addChild(roadFill);
 
 // set player
 const player = new Player(startPos, goalPos);
