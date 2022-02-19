@@ -7,7 +7,7 @@ PixiPlugin.registerPIXI(PIXI);
 
 // Scene1のみの仕様
 export default class Player {
-  public sprite: PIXI.Sprite;
+  public container: PIXI.Container = new PIXI.Container();
 
   private readonly image = "/src/assets/images/animal_dog_back.png";
   private readonly stepToGoal: number = 15;
@@ -23,10 +23,12 @@ export default class Player {
     this.startPos = startPos;
     this.goalPos = goalPos;
 
+    this.container.position.set(startPos.x, startPos.y);
+
     // init sprite
-    this.sprite = PIXI.Sprite.from(this.image);
-    this.sprite.anchor.set(0.5);
-    this.sprite.position.set(startPos.x, startPos.y);
+    const sprite = PIXI.Sprite.from(this.image);
+    sprite.anchor.set(0.5);
+    this.container.addChild(sprite);
   }
 
   moveForward() {
@@ -35,12 +37,12 @@ export default class Player {
       return;
     }
     this.stepNum += 1;
-    gsap.to(this.sprite, {
+    gsap.to(this.container, {
       duration: 0.1,
       pixi: {
-        scale: this.sprite.scale.x - (1 - this.goalScale) / this.stepToGoal,
+        scale: this.container.scale.x - (1 - this.goalScale) / this.stepToGoal,
         positionY:
-          this.sprite.position.y +
+          this.container.position.y +
           (this.goalPos.y - this.startPos.y) / this.stepToGoal,
       },
     });

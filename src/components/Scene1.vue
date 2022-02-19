@@ -38,7 +38,7 @@ const goalPos: ObservablePoint = new ObservablePoint(
 
 // set player
 const player = new Player(startPos, goalPos);
-app.stage.addChild(player.sprite);
+app.stage.addChild(player.container);
 
 // Make stage interactive so you can click on it too
 app.stage.interactive = true;
