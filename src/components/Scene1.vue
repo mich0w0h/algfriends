@@ -9,7 +9,7 @@ const app: Application = new Application({
   antialias: true,
   autoDensity: true,
   resolution: devicePixelRatio,
-  backgroundColor: 0xf0f0f,
+  backgroundColor: 0xcce7e8,
 });
 
 document.body.appendChild(app.view);
@@ -20,8 +20,8 @@ const startPos: ObservablePoint = new ObservablePoint(
     return;
   },
   null,
-  app.screen.width * 0.5,
-  app.screen.height * 0.7
+  app.screen.right / 2,
+  app.screen.bottom - 150
 );
 const goalPos: ObservablePoint = new ObservablePoint(
   () => {
